@@ -54,3 +54,7 @@ def reporte(request):
 def subir(request):
     context={}
     return render(request, 'ontour/subir.html', context)
+
+def genera(request):
+    context={}
+    return render(request, 'ontour/genera.html', context)

@@ -15,4 +15,5 @@ urlpatterns = [
     path('inicioSesion', views.inicioSesion, name='inicioSesion'),
     path('reporte', views.reporte, name='reporte'),
     path('subir', views.subir, name='subir'),
+    path('genera', views.genera, name='genera')
 ]
