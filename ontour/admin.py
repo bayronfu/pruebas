@@ -14,3 +14,4 @@ admin.site.register(Genero)
 admin.site.register(Apoderado)
 admin.site.register(contrato)
 
+

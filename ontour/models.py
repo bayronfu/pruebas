@@ -12,12 +12,13 @@ class Pagos (models.Model):
     def __str__(self):
         return ("Deposito con id")+ " " + str(self.id_pago)
     
-class Tipo_pago (models.Model):
-    id_tipo_pago        = models.AutoField(primary_key= True, max_length = 10, db_column ='IdTipoPago')
-    Tipo_pago           = models.CharField(blank = False, null = False, max_length=50)
+class Tipo_pago(models.Model):
+    id_tipo_pago = models.AutoField(primary_key=True, max_length=10, db_column='IdTipoPago')
+    Tipo_pago = models.CharField(blank=False, null=False, max_length=50)
 
     def __str__(self):
         return str(self.Tipo_pago)
+
  
 class paquete_turistico (models.Model):
     id_paquete          = models.AutoField(primary_key = True, db_column='PaqueteTuristico')

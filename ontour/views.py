@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import colegio, curso
+from .models import Pagos
 # Create your views here.
 
 def genera(request):
@@ -10,8 +11,14 @@ def genera(request):
         colegio_id = request.POST.get('colegio')
         cursos = curso.objects.filter(id_colegio=colegio_id)
         context['cursos'] = cursos
+
+        curso_id = request.POST.get('curso')  # Obtener el ID del curso seleccionado
+        if curso_id:
+            pagos = Pagos.objects.filter(id_curso=curso_id)
+            context['pagos'] = pagos
     
     return render(request, 'ontour/genera.html', context)
+
 
 def reporte(request):
     context={}
