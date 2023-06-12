@@ -1,6 +1,21 @@
 from django.shortcuts import render
-
+from .models import colegio, curso
 # Create your views here.
+
+def genera(request):
+    colegios = colegio.objects.all()
+    context = {"colegios": colegios}
+    
+    if request.method == 'POST':
+        colegio_id = request.POST.get('colegio')
+        cursos = curso.objects.filter(id_colegio=colegio_id)
+        context['cursos'] = cursos
+    
+    return render(request, 'ontour/genera.html', context)
+
+def reporte(request):
+    context={}
+    return render(request, 'ontour/reporte.html', context)
 
 
 def index(request):
@@ -47,14 +62,8 @@ def inicioSesion(request):
     context={}
     return render(request, 'ontour/inicioSesion.html', context)
 
-def reporte(request):
-    context={}
-    return render(request, 'ontour/reporte.html', context)
-
 def subir(request):
     context={}
     return render(request, 'ontour/subir.html', context)
 
-def genera(request):
-    context={}
-    return render(request, 'ontour/genera.html', context)
+
