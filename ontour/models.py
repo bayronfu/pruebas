@@ -7,6 +7,7 @@ class Pagos (models.Model):
     cantidad_pago       = models.IntegerField(blank = False, null = False)
     fecha_pago          = models.DateField(blank = False, null = False)
     id_tipo_pago        = models.ForeignKey("Tipo_pago", on_delete=models.CASCADE, blank = False, null = False, max_length=50)
+    id_curso            = models.ForeignKey("curso", on_delete=models.CASCADE)
 
     def __str__(self):
         return ("Deposito con id")+ " " + str(self.id_pago)
@@ -37,6 +38,7 @@ class curso (models.Model):
     nivel_curso         = models.CharField(blank = False, null = False, max_length= 15)
     seccion_curso       = models.CharField(blank = False, null = False, max_length= 1)
     id_colegio          = models.ForeignKey("colegio", on_delete=models.CASCADE)
+    id_cuenta_viaje     = models.ForeignKey("estado_pago",blank = False, null = False, on_delete=models.CASCADE)
 
     def __str__(self):
         return str (self.id_colegio)+ " "  +(self.nivel_curso)+ " " +(self.seccion_curso)
@@ -94,6 +96,7 @@ class contrato (models.Model):
     id_cuenta_viaje         = models.ForeignKey("estado_pago", on_delete=models.CASCADE)
     rut_apoderado           = models.ForeignKey("Apoderado", on_delete=models.CASCADE)
     id_curso                = models.ForeignKey("curso", on_delete=models.CASCADE)
+
 
     def __str__(self):
         return ("Contrato de")+ " " + str(self.id_curso)    
