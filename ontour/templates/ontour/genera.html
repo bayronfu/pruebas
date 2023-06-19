@@ -67,7 +67,7 @@
                     <div class="col-6">
                         <div class="form-label">
 
-                            <form method="post">
+                            <form method="post" action="{% url 'genera' %}">
                                 {% csrf_token %}
                                 <label for="colegio">Selecciona un colegio:</label>
                                 <select class="form-select" id="colegio" aria-label="Floating label select example" name="colegio" onchange="guardarValorSeleccionado(this)">
@@ -80,11 +80,17 @@
                                     <label for="curso">Selecciona un curso:</label>
                                     <select class="form-select" id="curso" aria-label="Floating label select example" name="curso">
                                         {% for curso in cursos %}
-                                        <option value="{{ curso.id_curso }}">{{ curso.nivel_curso }} - Sección {{ curso.seccion_curso }}</option>
+                                        <option value="{{ curso.id_curso }}" {% if curso.id_curso == curso_seleccionado.id_curso %}selected{% endif %}>{{ curso.nivel_curso }} - Sección {{ curso.seccion_curso }} </option>
                                         {% endfor %}
                                     </select>
                                 {% endif %}
                             
+                                
+                                    <br>
+                                    <button type="submit">Mostrar Pagos</button>
+                                
+                                  
+                                
 
                                 <style>
                                     table {
@@ -101,30 +107,37 @@
                                     tbody tr:nth-child(even) {
                                         background-color: #f2f2f2;
                                     }
+                                    #nota{
+                                        color: red;
+                                    }
                                 </style>
                                 
                             </form>
                             
                             {% if pagos %}
-                            <table>
-                                <thead>
-                                    <tr>
-                                       <pre> <th>Cantidad de Pago</th>    </pre>
-                                        <th>Fecha de Pago</th>
-                                        <th>ID Tipo de Pago</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for pago in pagos %}
-                                    <tr>
-                                        <td>{{ pago.cantidad_pago }}</td>
-                                        <td>{{ pago.fecha_pago }}</td>
-                                        <td>{{ pago.id_tipo_pago }}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                            {% endif %}
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Cantidad de Pago</th>
+                                                <th>Fecha de Pago</th>
+                                                <th>ID Tipo de Pago</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for pago in pagos %}
+                                                <tr>
+                                                    <td>{{ pago.cantidad_pago }}</td>
+                                                    <td>{{ pago.fecha_pago }}</td>
+                                                    <td>{{ pago.id_tipo_pago }}</td>
+                                                    
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                  {% else %}
+                                 <p id="nota">No se registraron pagos.</p>   
+                                {% endif %}
+
+
                                         
                     
 

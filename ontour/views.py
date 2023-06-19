@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from .models import colegio, curso
-from .models import Pagos
-# Create your views here.
+from .models import colegio, curso, Pagos, estado_pago
 
+# Create your views here.
 def genera(request):
     colegios = colegio.objects.all()
     context = {"colegios": colegios}
@@ -14,8 +13,15 @@ def genera(request):
 
         curso_id = request.POST.get('curso')  # Obtener el ID del curso seleccionado
         if curso_id:
-            pagos = Pagos.objects.filter(id_curso=curso_id)
+            curso_seleccionado = curso.objects.get(id_curso=curso_id)  # Obtener el curso seleccionado
+            pagos = Pagos.objects.filter(id_curso=curso_seleccionado)  # Filtrar los pagos por el curso seleccionado
+            # Obtener los objetos estado_pago relacionados con los pago del curso seleccionado
+            estado_pagos = estado_pago.objects.filter(id_pago__in=pagos.values('id_pago'))
+            
             context['pagos'] = pagos
+            context['curso_seleccionado'] = curso_seleccionado
+            context['estado_pagos'] = estado_pagos
+        
     
     return render(request, 'ontour/genera.html', context)
 

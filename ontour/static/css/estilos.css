@@ -57,8 +57,9 @@
     margin-top: 1rem;       
 }
 
-
-
+.entregadatos{
+    background-color: aqua;
+}
 
 table {
     border-collapse: collapse;
@@ -73,4 +74,7 @@ th, td {
 
 tbody tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+#nota{
+    color: red;
 }
