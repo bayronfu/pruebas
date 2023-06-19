@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pagos, Tipo_pago, paquete_turistico, colegio, curso, estado_pago, Alumno, Genero, Apoderado, contrato
+from .models import Pagos, Tipo_pago, paquete_turistico, colegio, curso, estado_pago, Alumno, Genero, Apoderado, contrato, actividad
 
 # Register your models here.
 
@@ -14,4 +14,4 @@ admin.site.register(Genero)
 admin.site.register(Apoderado)
 admin.site.register(contrato)
 
-
+admin.site.register(actividad)

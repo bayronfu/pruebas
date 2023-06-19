@@ -8,6 +8,7 @@ class Pagos (models.Model):
     fecha_pago          = models.DateField(blank = False, null = False)
     id_tipo_pago        = models.ForeignKey("Tipo_pago", on_delete=models.CASCADE, blank = False, null = False, max_length=50)
     id_curso            = models.ForeignKey("curso", on_delete=models.CASCADE)
+    id_actividad        = models.ForeignKey("actividad",blank = False, null = False, on_delete=models.CASCADE)
 
     def __str__(self):
         return ("Deposito con id")+ " " + str(self.id_pago)
@@ -101,3 +102,11 @@ class contrato (models.Model):
 
     def __str__(self):
         return ("Contrato de")+ " " + str(self.id_curso)    
+
+
+class actividad (models.Model):
+    id_actividad                = models.AutoField(primary_key = True)
+    nombre_actividad            = models.CharField(blank = False, null = False, max_length = 15)
+
+    def __str__(self):
+        return ("Actividad")+ " " + str(self.nombre_actividad)
