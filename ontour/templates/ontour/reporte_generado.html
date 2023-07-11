@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avance de Metas por Cliente - OnTour</title>
+    <link rel="stylesheet" href="{% static 'ccs/estilos.css'%}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="{% static 'css/sb-admin-2.min.css'%}" rel="stylesheet">         
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'index'%}">
+                    <img src="{% static 'imagenes/logo.png' %}" alt="logo" width="auto" height="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'index'%}">Inicio</a>
+                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'destinos'%}">Nuestros Destinos</a>
+                    </li>                   
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Acceso Ejecutivos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'crear'%}">Creación de Cuentas</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'carga'%}">Carga de Archivos</a></li>                          
+                            <li><a class="dropdown-item" href="{% url 'actualizar'%}">Actualización de información</a></li>
+                          </ul>
+                    </li>                    
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    
+
+    <div class="container">
+        <div class="containerfd">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="titulo" class="text-center"> Reporte</h1>
+            </div>               
+            
+            
+            </div>
+        </div>
+        </div>
+    </div>    
+
+    <div class="container" style="text-align: center;" >
+        <div class="row g-8">
+            <!--Row 1-->
+            <div class="col-md-2"></div>
+
+            <div class="col-md-8" >
+                <table >
+                    <th> N° Contrato </th>
+                    <th> Fecha de Evento </th>
+                    <th> Paquete de viajes </th>
+                    <th> Colegio y Curso</th>
+                    <th> Apoderado </th>
+                        {% if contratos %}
+
+                            
+                                <th> N° Contrato </th>
+                                <th> Fecha de Evento </th>
+                                <th> Paquete de viajes </th>
+                                <th> Colegio y Curso</th>
+                                <th> Apoderado </th>
+                            <form>    
+                                <pre>N° Contrato: {{contratos.id_contrato}}</pre>
+                                <pre>N° de cuenta:{{contratos.id_cuenta_viaje}}</pre>
+                                <pre>Meta: {{contratos.id_cuenta_viaje.cantidad_total}}</pre>
+                                <pre>Cantidad actual:{{contratos.id_cuenta_viaje.cantidad_actual}}</pre>
+
+                                {% if pagos %}
+                                    {% for pago in pagos%}
+                                    <pre> {{pagos.id_pago}} </pre>
+                                    {%endfor%}    
+                                {%endif%}
+                            </form>
+                                
+                                
+
+                                
+                        {%endif%}
+
+                </table>
+            <div class="col-md-2"></div>
+                <br>
+                <button type="button">
+                    <a href= "{%url 'index'%}"> Volver </a>
+                </button>
+            </div>
+
+            
+
+
+        </div>
+   
+    
+
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<footer class="containerf">
+    <p>&copy; 2023 On Tour S.A &middot;</p>
+</footer>
+<link rel="stylesheet" href="{% static 'ontourapp/css/estilos.css' %}">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+<script src="{% static 'js/botones.js' %}">
+</script>
+
+</body>
+</html>

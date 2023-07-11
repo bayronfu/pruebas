@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import colegio, curso, Pagos, estado_pago
+from .models import colegio, curso, Pagos, estado_pago, contrato, paquete_turistico, Apoderado, Pagos
 
 # Create your views here.
 def genera(request):
@@ -79,4 +79,28 @@ def subir(request):
     context={}
     return render(request, 'ontour/subir.html', context)
 
+def reporte_dos(request):
+    contratos = contrato.objects.all()
+    context={"contratos":contratos}
+    
+    return render(request, 'ontour/reporte_dos.html', context)
+
+def reporte_generado(request,pk):
+    if pk != "":
+        contratos = contrato.objects.get(id_contrato=pk)
+        paquetes = paquete_turistico.objects.all()
+        cuentas   = estado_pago.objects.all()
+        apoderados  = Apoderado.objects.all()
+        cursos      = curso.objects.all()
+        
+                
+        context={"contratos":contratos, 'paquetes':paquetes, 'cuentas':cuentas, 'apoderados':apoderados, 'cursos':cursos}
+
+        if contratos:
+            pagos = Pagos.objects.filter(id_cuenta_viaje=estado_pago.id_cuenta_viaje)
+            context={'pagos':pagos}
+            return render(request, 'ontour/reporte_generado.html', context)
+        else:
+            context={'mensaje': "Error, Atencion no existe."}
+            return render(request,'ontour/reporte_dos.html', context )
 
