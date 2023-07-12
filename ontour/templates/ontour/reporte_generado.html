@@ -13,6 +13,7 @@
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="{% static 'css/sb-admin-2.min.css'%}" rel="stylesheet">  
+    <link href="{% static 'css/confi_repo.css'%}" rel="stylesheet">
     <script href="{% static 'sumas.js'%}"></script>       
 </head>
 <body>
@@ -42,7 +43,7 @@
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="{% url 'carga'%}">Carga de Archivos</a></li>                          
                             <li><a class="dropdown-item" href="{% url 'actualizar'%}">Actualización de información</a></li>
-                          </ul>
+                        </ul>
                     </li>                    
                     </ul>
                     <form class="d-flex" role="search">
@@ -115,7 +116,9 @@
                                 }
                             </style>
                             <p id="total">Pago Total: </p>
-                            <p id="porcentaje">Porcentaje Total: </p>
+                            <div class="progress">
+                                <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"> <p id="porcentaje">Porcentaje Total: </p></div>
+                            </div>
                             
                             
                 
@@ -160,7 +163,18 @@
     
     var cantidadTotal = {{ contratos.id_cuenta_viaje.cantidad_total }};
     var porcentaje = (suma / cantidadTotal) * 100;
-    document.getElementById("porcentaje").innerText += " "+ porcentaje.toFixed(2) + "%";
+    document.getElementById("porcentaje").innerText += " "+ porcentaje.toFixed(0) + "%";
+
+    var progressBar = document.getElementById("progress-bar");
+    progressBar.style.width = porcentaje.toFixed(0) + "%";
+    progressBar.innerText = porcentaje.toFixed(0) + "%";
+    if (porcentaje < 30) {
+        progressBar.classList.add("bg-danger");
+    } else if (porcentaje >= 31 && porcentaje <= 50) {
+        progressBar.classList.add("bg-warning");
+    } else {
+        progressBar.classList.add("bg-success");
+    }
 </script>
 </script>
 

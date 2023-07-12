@@ -1,0 +1,136 @@
+
+    .container {
+        text-align: center;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    th {
+        background-color: #333;
+        color: #fff;
+    }
+    
+    .col-md-2,
+    .col-md-8 {
+        padding: 0 15px;
+    }
+    
+    #total,
+    #porcentaje {
+        color: black;
+        font-size: 1.5rem;
+    }
+    
+    #nota {
+        color: red;
+        font-weight: bold;
+    }
+    
+    button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    
+    button a {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    button:hover {
+        background-color: #555;
+    }
+
+
+    .container {
+        text-align: center;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    th {
+        background-color: #333;
+        color: #fff;
+    }
+    
+    .col-md-2,
+    .col-md-8 {
+        padding: 0 15px;
+    }
+    
+    button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    
+    button a {
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    button:hover {
+        background-color: #030303;
+    }
+
+
+    .progress {
+        height: 50px;
+    }
+    
+    .progress-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        transition: width 0.3s;
+    }
+
+
+    pre {
+        color: black;  /* Cambia el color del texto a negro */
+        border: 2px solid black;  /* Agrega un borde de 2px de grosor de color negro */
+        padding: 2px;  /* Añade un espacio interno de 10px para separar el texto del borde */
+        background-color: lightgray;  /* Cambia el color de fondo a uno más llamativo, como "lightgray" */
+    }
+
+
+    #titulo {
+        font-size: 2.5rem;  /* Ajusta el tamaño de la fuente según tus preferencias */
+        color: #050505;  /* Cambia el color del texto a uno llamativo, como naranja */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Agrega una sombra al texto para hacerlo más llamativo */
+        letter-spacing: 2px;  /* Aumenta el espaciado entre las letras para mayor impacto */
+        margin-bottom: 20px;  /* Añade un espacio inferior para separar el título de otros elementos */
+    }
