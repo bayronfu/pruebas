@@ -10,6 +10,7 @@ class Pagos (models.Model):
     id_curso            = models.ForeignKey("curso", on_delete=models.CASCADE)
     id_actividad        = models.ForeignKey("actividad",blank = False, null = False, on_delete=models.CASCADE)
     id_cuenta_viaje     = models.ForeignKey("estado_pago", on_delete=models.CASCADE)
+    id_contrato         = models.ForeignKey("contrato",  on_delete=models.CASCADE)
 
     def __str__(self):
         return ("Deposito con id")+ " " + str(self.id_pago)

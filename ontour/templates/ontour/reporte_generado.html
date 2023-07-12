@@ -75,30 +75,39 @@
 
             <div class="col-md-8" >
                 <table >
-                    <th> N° Contrato </th>
-                    <th> Fecha de Evento </th>
-                    <th> Paquete de viajes </th>
-                    <th> Colegio y Curso</th>
-                    <th> Apoderado </th>
+                    
                         {% if contratos %}
 
-                            
-                                <th> N° Contrato </th>
-                                <th> Fecha de Evento </th>
-                                <th> Paquete de viajes </th>
-                                <th> Colegio y Curso</th>
-                                <th> Apoderado </th>
                             <form>    
                                 <pre>N° Contrato: {{contratos.id_contrato}}</pre>
                                 <pre>N° de cuenta:{{contratos.id_cuenta_viaje}}</pre>
                                 <pre>Meta: {{contratos.id_cuenta_viaje.cantidad_total}}</pre>
                                 <pre>Cantidad actual:{{contratos.id_cuenta_viaje.cantidad_actual}}</pre>
-
+                                <pre>Pagos: {{contratos.id_cuenta_viaje}}</pre>
+                                
                                 {% if pagos %}
-                                    {% for pago in pagos%}
-                                    <pre> {{pagos.id_pago}} </pre>
-                                    {%endfor%}    
-                                {%endif%}
+                                    
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th>Cantidad de Pago</th>
+                                                <th>Fecha de Pago</th>
+                                                <th>ID Tipo de Pago</th>
+                                            </tr>
+                                            </thead>
+                                            {%for pago in pagos%}
+                                                <tr>
+                                                <td>{{ pago.cantidad_pago }}</td>
+                                                <td>{{ pago.fecha_pago }}</td>
+                                                <td>{{ pago.id_tipo_pago }}</td>
+                                                
+                                            {% endfor %}
+                                        
+                                        
+                                        </table>
+                                  {% else %}
+                                 <p id="nota">No se registraron pagos.</p>   
+                                {% endif %}
                             </form>
                                 
                                 
@@ -110,7 +119,7 @@
             <div class="col-md-2"></div>
                 <br>
                 <button type="button">
-                    <a href= "{%url 'index'%}"> Volver </a>
+                    <a href= "{%url 'reporte_dos'%}"> Volver </a>
                 </button>
             </div>
 

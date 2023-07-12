@@ -92,15 +92,15 @@ def reporte_generado(request,pk):
         cuentas   = estado_pago.objects.all()
         apoderados  = Apoderado.objects.all()
         cursos      = curso.objects.all()
-        
+        pagos = Pagos.objects.filter(id_contrato=contratos)
                 
-        context={"contratos":contratos, 'paquetes':paquetes, 'cuentas':cuentas, 'apoderados':apoderados, 'cursos':cursos}
-
+        context={"contratos":contratos, 'paquetes':paquetes, 'cuentas':cuentas, 'apoderados':apoderados, 'cursos':cursos, 'pagos':pagos}
+        
         if contratos:
-            pagos = Pagos.objects.filter(id_cuenta_viaje=estado_pago.id_cuenta_viaje)
-            context={'pagos':pagos}
+        
             return render(request, 'ontour/reporte_generado.html', context)
+        
         else:
-            context={'mensaje': "Error, Atencion no existe."}
+            context={'mensaje': "Error, Curso no existe."}
             return render(request,'ontour/reporte_dos.html', context )
 
