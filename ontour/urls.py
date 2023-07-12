@@ -16,5 +16,7 @@ urlpatterns = [
     path('reporte', views.reporte, name='reporte'),
     path('subir', views.subir, name='subir'),
     path('genera', views.genera, name='genera'),
+    path('reporte_dos', views.reporte_dos, name='reporte_dos'),
+    path('reporte_generado/<int:pk>', views.reporte_generado, name='reporte_generado')
     
 ]
