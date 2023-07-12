@@ -87,7 +87,7 @@ def reporte_dos(request):
 
 def reporte_generado(request,pk):
     if pk != "":
-         contratos= contrato.objects.get(id_contrato=pk)
+        contratos= contrato.objects.get(id_contrato=pk)
         paquetes = paquete_turistico.objects.all()
         cuentas   = estado_pago.objects.all()
         apoderados  = Apoderado.objects.all()

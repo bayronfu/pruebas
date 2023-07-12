@@ -93,6 +93,7 @@
                                                 <th>Cantidad de Pago</th>
                                                 <th>Fecha de Pago</th>
                                                 <th>ID Tipo de Pago</th>
+                                                <th> Actividad </th>
                                             </tr>
                                             </thead>
                                             {%for pago in pagos%}
@@ -100,6 +101,7 @@
                                                 <td>{{ pago.cantidad_pago }}</td>
                                                 <td>{{ pago.fecha_pago }}</td>
                                                 <td>{{ pago.id_tipo_pago }}</td>
+                                                <td>{{pago.id_actividad}}</td>
                                                 
                                             {% endfor %}
                                         
