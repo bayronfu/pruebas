@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from django.shortcuts import render
 from .models import colegio, curso, Pagos, estado_pago, contrato, paquete_turistico, Apoderado, Pagos
 
@@ -93,8 +94,8 @@ def reporte_generado(request,pk):
         apoderados  = Apoderado.objects.all()
         cursos      = curso.objects.all()
         pagos = Pagos.objects.filter(id_contrato=contratos)
-                
-        context={"contratos":contratos, 'paquetes':paquetes, 'cuentas':cuentas, 'apoderados':apoderados, 'cursos':cursos, 'pagos':pagos}
+        total_pagos = pagos.aggregate(total=Sum('cantidad_pago'))['total']  
+        context={"contratos":contratos, 'paquetes':paquetes, 'cuentas':cuentas, 'apoderados':apoderados, 'cursos':cursos, 'pagos':pagos,'total_pagos': total_pagos}
         
         if contratos:
         

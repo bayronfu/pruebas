@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="{% static 'css/sb-admin-2.min.css'%}" rel="stylesheet">         
+    <link href="{% static 'css/sb-admin-2.min.css'%}" rel="stylesheet">  
+    <script href="{% static 'sumas.js'%}"></script>       
 </head>
 <body>
     <header>
@@ -76,47 +77,55 @@
             <div class="col-md-8" >
                 <table >
                     
-                        {% if contratos %}
-
-                            <form>    
-                                <pre>N° Contrato: {{contratos.id_contrato}}</pre>
-                                <pre>N° de cuenta:{{contratos.id_cuenta_viaje}}</pre>
-                                <pre>Meta: {{contratos.id_cuenta_viaje.cantidad_total}}</pre>
-                                <pre>Cantidad actual:{{contratos.id_cuenta_viaje.cantidad_actual}}</pre>
-                                <pre>Pagos: {{contratos.id_cuenta_viaje}}</pre>
-                                
-                                {% if pagos %}
-                                    
-                                        <table>
-                                            <thead>
-                                            <tr>
-                                                <th>Cantidad de Pago</th>
-                                                <th>Fecha de Pago</th>
-                                                <th>ID Tipo de Pago</th>
-                                                <th> Actividad </th>
-                                            </tr>
-                                            </thead>
-                                            {%for pago in pagos%}
-                                                <tr>
-                                                <td>{{ pago.cantidad_pago }}</td>
-                                                <td>{{ pago.fecha_pago }}</td>
-                                                <td>{{ pago.id_tipo_pago }}</td>
-                                                <td>{{pago.id_actividad}}</td>
-                                                
-                                            {% endfor %}
-                                        
-                                        
-                                        </table>
-                                  {% else %}
-                                 <p id="nota">No se registraron pagos.</p>   
-                                {% endif %}
-                            </form>
-                                
-                                
-
-                                
-                        {%endif%}
-
+                    {% if contratos %}
+                    <form>    
+                        <pre>N° Contrato: {{ contratos.id_contrato }}</pre>
+                        <pre>N° de cuenta: {{ contratos.id_cuenta_viaje }}</pre>
+                        <pre>Meta: {{ contratos.id_cuenta_viaje.cantidad_total }}</pre>
+                        <pre>Cantidad actual: {{ contratos.id_cuenta_viaje.cantidad_actual }}</pre>
+                       
+                
+                        {% if pagos %}
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Cantidad de Pago</th>
+                                        <th>Fecha de Pago</th>
+                                        <th>ID Tipo de Pago</th>
+                                        <th>Actividad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for pago in pagos %}
+                                        <tr>
+                                            <td>{{ pago.cantidad_pago }}</td>
+                                            <td>{{ pago.fecha_pago }}</td>
+                                            <td>{{ pago.id_tipo_pago }}</td>
+                                            <td>{{ pago.id_actividad }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <hr>
+                            <hr>
+                            <style>
+                                #total,#porcentaje{
+                                    color: black;
+                                    font-size: 1.5rem;
+                                }
+                            </style>
+                            <p id="total">Pago Total: </p>
+                            <p id="porcentaje">Porcentaje Total: </p>
+                            
+                            
+                
+                        {% else %}
+                            <p id="nota">No se registraron pagos.</p>
+                        {% endif %}
+                    </form>
+                {% endif %}
+                
+                            
                 </table>
             <div class="col-md-2"></div>
                 <br>
@@ -139,7 +148,20 @@
 <link rel="stylesheet" href="{% static 'ontourapp/css/estilos.css' %}">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
-<script src="{% static 'js/botones.js' %}">
+<script src="{% static 'js/botones.js' %}"></script>
+<script>
+    
+    var cantidadActual = {{ contratos.id_cuenta_viaje.cantidad_actual }};
+    var totalPagos = {{ total_pagos }};
+    var suma = cantidadActual + totalPagos;
+    var formato = " $ " + suma.toLocaleString();
+    document.getElementById("total").innerText += formato;
+
+    
+    var cantidadTotal = {{ contratos.id_cuenta_viaje.cantidad_total }};
+    var porcentaje = (suma / cantidadTotal) * 100;
+    document.getElementById("porcentaje").innerText += " "+ porcentaje.toFixed(2) + "%";
+</script>
 </script>
 
 </body>
